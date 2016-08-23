@@ -1,0 +1,21 @@
+###############################################################################
+#                          Generated on phpdocker.io                          #
+###############################################################################
+
+webserver:
+  image: airtonzanon/apache
+  container_name: webserver
+  volumes:
+      - ../:/var/www/
+  ports:
+   - "80:80"
+  links:
+   - php-fpm
+
+php-fpm:
+  build: .
+  dockerfile: php-fpm/Dockerfile
+  container_name: php-fpm
+  volumes:
+    - ../:/var/www/
+    - ./php-fpm/php-ini-overrides.ini:/etc/php5/fpm/conf.d/99-overrides.ini

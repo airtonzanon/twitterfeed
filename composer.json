@@ -1,5 +1,11 @@
 {
     "require": {
         "ricardoper/twitteroauth": "^2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Feeder\\": "src/"
+        }
     }
+
 }
