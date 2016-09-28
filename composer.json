@@ -1,6 +1,7 @@
 {
     "require": {
-        "ricardoper/twitteroauth": "^2.1"
+        "ricardoper/twitteroauth": "^2.1",
+        "respect/rest": "*"
     },
     "autoload": {
         "psr-4": {
