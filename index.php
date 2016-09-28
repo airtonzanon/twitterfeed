@@ -1,19 +1,16 @@
 <?php
 
 require_once('vendor/autoload.php');
-use Feeder\Service\Feed;
+use Feeder\Controller\Feed,
+    Respect\Rest\Router;
 
-$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$uri = substr($uri, strpos($uri, 'index.php'));
-$method = $_SERVER['REQUEST_METHOD'];
+$app = new Router();
 
-if ((preg_match('~^index.php/feed/(\w+)$~', $uri, $matches) || preg_match('~^index.php/feed/(\w+)/$~', $uri, $matches))
-    && $method == 'GET') {
+$app->get("/feed/*", function($q){
 
     $feed = new Feed();
-    $feed->getXML($matches[1]);
+    var_dump($feed->generateFeed($q));
 
-} else {
-    header('HTTP/1.1 404 Not Found');
-    echo '{"error":404}';
-}
+});
+
+$app->run();
