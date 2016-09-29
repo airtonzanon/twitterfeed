@@ -21,7 +21,7 @@ class SearchService
      */
     public function search($q, $count, $lang)
     {
-        $consumer = new ConsumerModel('PwRo3VchZ9826Fan2KZukCMfK', 'hwXTV9JfbjCllK4lKCnba0xxFykNS9vTxhmPXWA8XfAvcy7Pz0');
+        $consumer = new ConsumerModel('CONSUMER_KEY', 'CONSUMER_SECRET');
         $search = new SearchModel($q, $count, $lang);
 
         $conn = AuthTwitterService::conn($consumer->toArray());
