@@ -42,7 +42,10 @@ class ConsumerModel
         return $this->consumer_secret;
     }
 
-
+    public function toArray()
+    {
+        return get_object_vars($this);
+    }
 
 
 }

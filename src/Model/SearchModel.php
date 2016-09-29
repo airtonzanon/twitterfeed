@@ -11,20 +11,19 @@ namespace Feeder\Model;
 class SearchModel
 {
 
-    private $query;
+    private $q;
     private $lang;
     private $count;
-    private $paramsArray;
 
     /**
      * SearchModel constructor.
-     * @param String $query
+     * @param String $q
      * @param $lang
      * @param $count
      */
-    public function __construct($query = null, $lang = null, $count = null)
+    public function __construct($q = null, $count = null, $lang = null)
     {
-        $this->query = $query;
+        $this->q = $q;
         $this->lang = $lang;
         $this->count = $count;
     }
@@ -32,18 +31,9 @@ class SearchModel
     /**
      * @return null
      */
-    public function getQuery()
+    public function getQ()
     {
-        return $this->query;
-    }
-
-    /**
-     * @param null $query
-     */
-    public function setQuery($query)
-    {
-        $this->query = $query;
-        $this->setParamsArray('q', $query);
+        return $this->q;
     }
 
     /**
@@ -55,15 +45,6 @@ class SearchModel
     }
 
     /**
-     * @param null $lang
-     */
-    public function setLang($lang)
-    {
-        $this->lang = $lang;
-        $this->setParamsArray('lang', $lang);
-    }
-
-    /**
      * @return null
      */
     public function getCount()
@@ -71,25 +52,11 @@ class SearchModel
         return $this->count;
     }
 
-    /**
-     * @param null $count
-     */
-    public function setCount($count)
+    public function toArray()
     {
-        $this->count = $count;
-        $this->setParamsArray('count', $count);
-    }
-
-    public function getParamsArray()
-    {
-        return $this->paramsArray;
-    }
-
-    private function setParamsArray($key, $content)
-    {
-        if (!empty($content) || !is_null($content)) {
-            $this->paramsArray[$key] = $content;
-        }
+        return array_filter(get_object_vars($this), function ($value) {
+            return !is_null($value);
+        });
     }
 
 }

@@ -5,7 +5,7 @@ namespace Feeder\Service;
 use TwitterOAuth\Auth\SingleUserAuth,
     TwitterOAuth\Serializer\ArraySerializer;
 
-class AuthTwitter
+class AuthTwitterService
 {
 
     public function conn($credentials)

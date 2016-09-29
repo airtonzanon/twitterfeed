@@ -2,7 +2,6 @@
     "require": {
         "ricardoper/twitteroauth": "^2.1",
         "twig/twig": "~1.0",
-        "ocramius/generated-hydrator": "^2.0",
         "respect/rest": "^0.6.0"
     },
     "autoload": {
