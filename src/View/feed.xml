@@ -1,23 +1,27 @@
-<? xml version = "1.0" encoding = "utf-8"?>
+<?xml version = "1.0" encoding = "utf-8" ?>
 
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <title>Twitter Feed for '. $search .'</title>
+    <title>Twitter Feed for {{search}}</title>
 
     <link href="http://192.168.1.231/twitter"/>
 
     <updated>2003-12-13T18:30:02Z</updated>
 
     <author>
-        <name>Twitter Feed</name>
+        <name>Twitter Feed {{search}}</name>
     </author>
 
     <id>http://www.twitter.com</id>
-
-    echo '<entry>';
-    echo '<title> Tweet about ' . $search . ' by ' . $data[$x][user][name] . '</title>';
-    echo '<id>http://www.twitter.com</id>';
-    echo '<updated>2003-12-13T18:30:02Z</updated>';
-    echo '<summary>' . $data[$x][text] . '</summary>';
-    echo '</entry>';
-
+    {% for res in response %}
+    {% for r in res %}
+    {% if r.text|default %}
+    <entry>
+        <title>{{ key }} Tweet about {{search}} by {{r.user.name}}</title>
+        <id>http://www.twitter.com</id>
+        <updated>2003-12-13T18:30:02Z</updated>
+        <summary>{{r.text}}</summary>
+    </entry>
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
 </feed>

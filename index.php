@@ -9,7 +9,7 @@ $app = new Router();
 $app->get("/feed/*", function($q){
 
     $feed = new Feed();
-    var_dump($feed->generateFeed($q));
+    echo $feed->generateFeed($q);
 
 });
 

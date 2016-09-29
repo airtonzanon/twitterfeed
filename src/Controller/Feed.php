@@ -4,23 +4,30 @@ namespace Feeder\Controller;
 
 use Feeder\Model\SearchModel,
     Feeder\Service\AuthTwitter,
-    Feeder\Model\ConsumerModel;
+    Feeder\Model\ConsumerModel,
+    Feeder\Helper\ObjectToArray,
+    Twig_Loader_Filesystem,
+    Twig_Environment;
 
 class Feed
 {
 
     public function generateFeed($q)
     {
-        $consumer = new ConsumerModel('s1utiEdlGwdv23HalLOJR3npg', 'iYROCvBH5qCuwWTJ8g9wcpkGBAb97oxBBR2lh8Lu9zRHxR42KO');
-
+        $consumer = new ConsumerModel('CONSUMER_KEY', 'CONSUMER_SECRET');
         $search = new SearchModel();
 
         $search->setQuery($q);
         $search->setCount(10);
         $search->setLang('pt');
 
-        $auth = new AuthTwitter();
-        return $this->response = $auth->conn($consumer)->get('search/tweets', $search->getParamsArray());
+        $conn = AuthTwitter::conn(ObjectToArray::getArray('Feeder\Model\ConsumerModel', $consumer));
+        $response = $conn->get('search/tweets', $search->getParamsArray());
+
+        $loader = new Twig_Loader_Filesystem(__DIR__ . '/../View');
+        $twig = new Twig_Environment($loader);
+
+        return $twig->render('feed.xml', array('search' => $search->getQuery(), 'response' => $response));
     }
 
 }
