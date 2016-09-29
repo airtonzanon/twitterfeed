@@ -17,7 +17,7 @@ composer update
 ## Chaves Twitter
 
 * Criar um projeto no http://apps.twitter.com/ para poder utilizar a API.
-* Em `src\Controller\Feed.php` alterar as chaves por suas respectivas.
+* Em `src\Service\SearchService.php` alterar as chaves por suas respectivas.
 
 ## Regras URL
 
@@ -44,7 +44,7 @@ composer update
 ## Twitter Keys
 
 * Go to http://apps.twitter.com/ and create a project to use the API.
-* Change the keys on `src\Controller\Feed.php`
+* Change the keys on `src\Service\SearchService.php`
 
 ## URL Rules
 
