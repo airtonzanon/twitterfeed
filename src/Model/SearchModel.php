@@ -87,7 +87,9 @@ class SearchModel
 
     private function setParamsArray($key, $content)
     {
-        $this->paramsArray[$key] = $content;
+        if (!empty($content) || !is_null($content)) {
+            $this->paramsArray[$key] = $content;
+        }
     }
 
 }

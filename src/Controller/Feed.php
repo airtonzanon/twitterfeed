@@ -12,14 +12,14 @@ use Feeder\Model\SearchModel,
 class Feed
 {
 
-    public function generateFeed($q)
+    public function generateFeed($q, $count, $lang)
     {
         $consumer = new ConsumerModel('CONSUMER_KEY', 'CONSUMER_SECRET');
         $search = new SearchModel();
 
         $search->setQuery($q);
-        $search->setCount(10);
-        $search->setLang('pt');
+        $search->setCount($count);
+        $search->setLang($lang);
 
         $conn = AuthTwitter::conn(ObjectToArray::getArray('Feeder\Model\ConsumerModel', $consumer));
         $response = $conn->get('search/tweets', $search->getParamsArray());

@@ -6,10 +6,9 @@ use Feeder\Controller\Feed,
 
 $app = new Router();
 
-$app->get("/feed/*", function($q){
+$app->get("/feed/*/*/*", function ($q, $count, $lang) {
 
-    $feed = new Feed();
-    echo $feed->generateFeed($q);
+    echo Feed::generateFeed($q, $count, $lang);
 
 });
 
