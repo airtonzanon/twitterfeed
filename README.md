@@ -48,7 +48,7 @@ composer update
 
 ## URL Rules
 
-* To search, you just need use http://localhost/feed/**term**/**quantity**/**language** - term (required), quantity (optional, default 15 tweets) and language (optional).
+* To search, you just need to use http://localhost/feed/**term**/**quantity**/**language** - term (required), quantity (optional, default 15 tweets) and language (optional).
 * Ex: http://localhost/feed/**fernandopolis**/**100**/**pt**
 * It's possible to search more than one term in the same tweet or verify if some tweet has at least one word of search.
 * Ex: http://localhost/feed/fernandopolis show OR fef
